@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { api } from '@/data/api'
 import { Product } from '@/data/types/product'
 import { env } from '@/env'
