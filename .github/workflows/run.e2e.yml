@@ -12,7 +12,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install PNPM
         uses: pnpm/action-setup@v2
@@ -32,6 +32,15 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+
+      - uses: actions/cache@v3
+        name: Setup Cypress cache
+        with:
+          path: |
+            ~/.cache/Cypress
+            ./cypress/videos
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/cypress.json') }}
+          
       - name: Install dependencies
         run: pnpm install
 
